@@ -1,4 +1,4 @@
-# Social Network App (Mobile + API)
+# Social Network App
 
 Ứng dụng Mạng xã hội với các tính năng tương tác đa dạng, được phát triển phục vụ Bài tập lớn môn Lập trình Ứng dụng Thiết bị Di động. Trong đó, em được đảm nhiệm vai trò phát triển hệ thống Back-end và Front-end cho 4 tính năng tương tác cốt lõi: **Like/Unlike bài viết**, **Bình luận**, **Theo dõi (Follow)** và **Tố cáo bài viết (Report)**.
 
