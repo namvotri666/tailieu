@@ -1,6 +1,6 @@
-# Social Network App 
+# Social Network App (Mobile + API)
 
-Ứng dụng Mạng xã hội với các tính năng tương tác đa dạng, được phát triển phục vụ Bài tập lớn môn Lập trình Ứng dụng Thiết bị Di động. Trong đó, cá nhân **Nguyễn Đăng Nam (B22DCCN557)** đảm nhiệm phát triển hệ thống Back-end và Front-end cho 4 tính năng tương tác cốt lõi: **Like/Unlike bài viết**, **Bình luận**, **Theo dõi (Follow)** và **Tố cáo bài viết (Report)**.
+Ứng dụng Mạng xã hội với các tính năng tương tác đa dạng, được phát triển phục vụ Bài tập lớn môn Lập trình Ứng dụng Thiết bị Di động. Trong đó, em được đảm nhiệm vai trò phát triển hệ thống Back-end và Front-end cho 4 tính năng tương tác cốt lõi: **Like/Unlike bài viết**, **Bình luận**, **Theo dõi (Follow)** và **Tố cáo bài viết (Report)**.
 
 ---
 
@@ -20,9 +20,9 @@
 
 ---
 
-## Chi tiết Mã nguồn Cá nhân thực hiện 
+## Chi tiết Mã nguồn Cá nhân thực hiện (Phân công: Nguyễn Đăng Nam)
 
-Toàn bộ các file dưới đây đều đã được thêm **JavaDoc Comment** đầy đủ tại các Class, các hàm xử lý logic và các API. Dưới đây là danh sách các file chính chịu trách nhiệm cho 4 chức năng tôi đảm nhận:
+Toàn bộ các file dưới đây đều đã được thêm **JavaDoc Comment** đầy đủ tại các Class, các hàm xử lý logic và các API. Dưới đây là danh sách các file chính chịu trách nhiệm cho 4 chức năng được nhận:
 
 ### 1. Tầng Controller (Điều hướng API)
 - [`UserController.java`](./backend/src/main/java/com/Man10h/social_network_app/controller/UserController.java): Tiếp nhận các Request từ người dùng (Like, Comment, Follow, Tạo Report). Validate dữ liệu, xác thực JWT Token và gọi xuống tầng Service.
@@ -73,7 +73,6 @@ Base URL mặc định: `http://<host>:8080/api/v1`
   - `DELETE /admin/reports/{id}`: Admin xóa báo cáo sau khi đã xử lý xong.
 
 ---
-
 ## Hướng dẫn chạy Database (MySQL)
 
 1) Tạo CSDL:
@@ -120,8 +119,7 @@ Backend sẽ khởi chạy ở cổng `8080`.
 ```powershell
 cd e:\TaiLieu\MAD\Code\frontend
 npm install
-npm start
-# hoặc npx expo start nếu dùng React Native
+npm run android
 ```
 
 ### Cấu hình API URL
@@ -134,7 +132,5 @@ const BASE_URL = "http://192.168.1.100:8080/api/v1";
 ---
 
 ## Cấu trúc thư mục
-
 - `backend/`: Spring Boot API (Controller, Service, Repository, Entity, DTO, Config)
 - `frontend/`: React / React Native Client App (Screens, Components, Services)
-- `Bao_Cao_BTL_Nguyen_Dang_Nam_Official.docx`: Báo cáo kỹ thuật bài tập lớn định dạng Word.
