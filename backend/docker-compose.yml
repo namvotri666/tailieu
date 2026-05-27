@@ -1,0 +1,34 @@
+services:
+  mysql:
+    image: mysql:9.4
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=social_network_app
+    volumes:
+      - mysql_data:/var/lib/mysql
+    expose:
+      - "3306"
+
+
+  bookstore:
+    image: nguyenmanhlc10/socialnetworkapp:latest
+    container_name: socialnetworkapp
+    environment:
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_MAIL_USERNAME=${SPRING_MAIL_USERNAME}
+      - SPRING_MAIL_PASSWORD=${SPRING_MAIL_PASSWORD}
+      - SPRING_LIQUIBASE_SCHEMA=${SPRING_LIQUIBASE_SCHEMA}
+      - JWT_SECRET=${JWT_SECRET}
+      - CLOUDINARY_KEY=${CLOUDINARY_KEY}
+      - CLOUDINARY_SECRET=${CLOUDINARY_SECRET}
+      - CLOUDINARY_NAME=${CLOUDINARY_NAME}
+      - AZURE_KEY=${AZURE_KEY}
+    ports:
+      - "8001:8080"
+    depends_on:
+      - mysql
+volumes:
+  mysql_data:

@@ -1,0 +1,76 @@
+package com.Man10h.social_network_app.util;
+
+import com.Man10h.social_network_app.model.entity.UserEntity;
+import com.Man10h.social_network_app.service.TokenService;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+@Component
+@RequiredArgsConstructor
+public class JwtTokenFilter extends OncePerRequestFilter {
+
+    private static final Set<String> WHITE_LIST = new HashSet<>();
+    private final TokenService tokenService;
+    private final UserDetailsService userDetailsService;
+
+    static {
+        WHITE_LIST.add("/api/v1/home/**");
+        WHITE_LIST.add("/api/v1/home");
+        WHITE_LIST.add("/v3/api-docs/**");
+        WHITE_LIST.add("/swagger-ui/**");
+        WHITE_LIST.add("/swagger-ui.html");
+
+    }
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        try{
+            if(shouldNotFilter(request)){
+                filterChain.doFilter(request, response);
+                return;
+            }
+            String authHeader = request.getHeader("Authorization");
+            if(authHeader == null || !authHeader.startsWith("Bearer ")){
+                filterChain.doFilter(request, response);
+                return;
+            }
+            String token = authHeader.substring(7);
+            String username = tokenService.getUsername(token);
+            if(SecurityContextHolder.getContext().getAuthentication() == null && username != null){
+                UserEntity userEntity = (UserEntity) userDetailsService.loadUserByUsername(username);
+                if(tokenService.validateToken(token)){
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userEntity, null, userEntity.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+            }
+            filterChain.doFilter(request, response);
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+        }
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+
+        return path.startsWith("/swagger-ui")
+                || path.startsWith("/v3/api-docs")
+                || path.startsWith("/api/v1/home");
+    }
+
+}
+

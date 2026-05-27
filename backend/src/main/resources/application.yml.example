@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: social-network-app
+
+  datasource:
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL:url}
+
+  liquibase:
+    change-log: classpath:/db/changelog/appchange-log.xml
+    liquibase-schema: ${SPRING_LIQUIBASE_SCHEMA:social_network}
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        default_batch_fetch_size: 10
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${SPRING_MAIL_USERNAME}
+    password: ${SPRING_MAIL_PASSWORD}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+jwt:
+  secret: ${JWT_SECRET}
+#frontend:
+#  url: http://localhost:8081
+
+cloudinary:
+  api_key: ${CLOUDINARY_KEY}
+  api_secret: ${CLOUDINARY_SECRET}
+  cloud_name: ${CLOUDINARY_NAME}
+
+azure:
+  api_key: ${AZURE_KEY:9AmCriorbFDfgJSUEN4foN8uTELaxggb9KSafvABdGfRCbXu40ZqJQQJ99CBACqBBLyXJ3w3AAAHACOGoBIS}
+  endpoint: https://be-app-content-safety.cognitiveservices.azure.com
