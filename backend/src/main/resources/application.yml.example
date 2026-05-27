@@ -43,5 +43,5 @@ cloudinary:
   cloud_name: ${CLOUDINARY_NAME}
 
 azure:
-  api_key: ${AZURE_KEY:9AmCriorbFDfgJSUEN4foN8uTELaxggb9KSafvABdGfRCbXu40ZqJQQJ99CBACqBBLyXJ3w3AAAHACOGoBIS}
-  endpoint: https://be-app-content-safety.cognitiveservices.azure.com
+  api_key: ${AZURE_KEY}
+  endpoint: ${AZURE_ENDPOINT}
