@@ -43,5 +43,5 @@ cloudinary:
   cloud_name: ${CLOUDINARY_NAME}
 
 azure:
-  api_key: ${AZURE_KEY}
-  endpoint: ${AZURE_ENDPOINT}
+  api_key: ${KEY}
+  endpoint: ${ENDPOINT}
