@@ -1,4 +1,4 @@
-# Social Network App (Mobile + API)
+# Social Network App 
 
 Ứng dụng Mạng xã hội với các tính năng tương tác đa dạng, được phát triển phục vụ Bài tập lớn môn Lập trình Ứng dụng Thiết bị Di động. Trong đó, cá nhân **Nguyễn Đăng Nam (B22DCCN557)** đảm nhiệm phát triển hệ thống Back-end và Front-end cho 4 tính năng tương tác cốt lõi: **Like/Unlike bài viết**, **Bình luận**, **Theo dõi (Follow)** và **Tố cáo bài viết (Report)**.
 
@@ -20,7 +20,7 @@
 
 ---
 
-## Chi tiết Mã nguồn Cá nhân thực hiện (Phân công: Nguyễn Đăng Nam)
+## Chi tiết Mã nguồn Cá nhân thực hiện 
 
 Toàn bộ các file dưới đây đều đã được thêm **JavaDoc Comment** đầy đủ tại các Class, các hàm xử lý logic và các API. Dưới đây là danh sách các file chính chịu trách nhiệm cho 4 chức năng tôi đảm nhận:
 
